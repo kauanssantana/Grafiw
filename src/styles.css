@@ -1,3 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Oswald:wght@400;500;600&display=swap');
+@import "tailwindcss";
 
-@import 'tailwindcss';
+@theme {
+  --color-brand-blue: #1a65b0;
+  --color-brand-navy: #0e2748;
+  --color-brand-orange: #f26a1b;
+  --color-ink: #1f2937;
+  --color-grey-light: #f3f4f6;
+  --font-heading: 'Oswald', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+body { font-family: var(--font-body); color: var(--color-ink); background: #fff; -webkit-font-smoothing: antialiased; }
+app-root { display: block; }
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center px-8 py-4 font-heading text-sm uppercase tracking-widest transition-colors; }
+  .btn-navy { @apply bg-brand-navy text-white hover:bg-brand-blue; }
+  .btn-orange { @apply bg-brand-orange text-white hover:bg-brand-navy; }
+  .btn-outline { @apply border border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white; }
+  .nav-link { @apply block py-7 font-heading text-[13px] uppercase tracking-widest text-ink transition-colors hover:text-brand-blue; }
+  .eyebrow { @apply font-heading text-xs uppercase tracking-[0.3em] text-brand-orange; }
+  .section-title { @apply font-heading text-4xl uppercase leading-tight text-brand-navy md:text-5xl; }
+  .section-pad { @apply mx-auto max-w-7xl px-6 py-20 md:py-28; }
+}
+
+/* Animação de entrada (diretiva appReveal) */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}

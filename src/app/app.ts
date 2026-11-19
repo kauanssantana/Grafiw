@@ -1,12 +1,19 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { TopBar } from './layout/top-bar';
+import { Header } from './layout/header';
+import { Footer } from './layout/footer';
+import { FloatingButtons } from './layout/floating-buttons';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
-  templateUrl: './app.html',
+  imports: [RouterOutlet, TopBar, Header, Footer, FloatingButtons],
+  template: `
+    <app-top-bar />
+    <app-header />
+    <main><router-outlet /></main>
+    <app-footer />
+    <app-floating-buttons />
+  `,
 })
-export class App {
-  protected readonly title = signal('grafiw');
-}
+export class App {}
