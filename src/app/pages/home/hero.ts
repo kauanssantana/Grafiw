@@ -8,7 +8,6 @@ import { COMPANY, waLink } from '../../data/company';
   template: `
     <section class="relative flex min-h-[85vh] flex-col overflow-hidden bg-grey-light lg:flex-row">
       <div class="z-10 flex w-full flex-col items-start justify-center px-8 pb-16 pt-16 lg:w-1/2 lg:px-16 lg:py-28 xl:px-24">
-        <div class="mb-8 h-1 w-16 bg-brand-orange"></div>
         <h1 class="font-heading text-5xl uppercase leading-[1.1] text-brand-navy lg:text-6xl xl:text-7xl">
           Textura e cor <br /> para a sua obra <br />
           <span class="text-brand-blue">direto da fábrica</span>
@@ -23,7 +22,7 @@ import { COMPANY, waLink } from '../../data/company';
       </div>
 
       <div class="relative min-h-[50vh] w-full flex-grow lg:w-1/2">
-        <img src="/images/hero-sala-rosa.jpg" alt="Sala com parede decorada com textura rosada" class="absolute inset-0 h-full w-full object-cover" fetchpriority="high" />
+        <img src="/images/fachada-grafiw.jpg" alt="Fachada da Grafiw com parede de amostras de texturas coloridas" class="absolute inset-0 h-full w-full object-cover object-[4%_center]" fetchpriority="high" />
         <div class="absolute bottom-6 left-6 bg-white px-5 py-3 shadow-lg">
           <p class="font-heading text-2xl text-brand-navy">★ {{ c.rating }} <span class="text-sm text-gray-500">no Google</span></p>
           <p class="text-xs text-gray-500">{{ c.reviews }} avaliações de clientes</p>

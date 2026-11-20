@@ -12,12 +12,11 @@ export const COMPANY = {
   mapQuery: 'Av. Afonso de Sampaio e Sousa, 1512, Itaquera, São Paulo - SP, 08275-025',
   rating: '4,5',
   reviews: 296,
-  // ⚠️ Trocar "#" pelos links reais das redes sociais.
+  // TikTok ainda sem link: quando tiver, adicione aqui { name: 'TikTok', url: '...' }
   social: [
-    { name: 'Facebook', url: '#' },
-    { name: 'Instagram', url: '#' },
-    { name: 'TikTok', url: '#' },
-    { name: 'YouTube', url: '#' },
+    { name: 'Facebook', url: 'https://www.facebook.com/texturagrafiwgps/' },
+    { name: 'Instagram', url: 'https://www.instagram.com/grafiwtexturas/' },
+    { name: 'YouTube', url: 'https://www.youtube.com/channel/UCt3Vez_0q3YXNCaIkQhPYew' },
   ],
 };
 

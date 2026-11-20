@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { waLink } from '../../data/company';
 
-interface Effect { img: string; color: string }
+interface Effect { img: string; color: string; name: string }
 
 @Component({
   selector: 'app-premium',
@@ -25,7 +25,8 @@ interface Effect { img: string; color: string }
           <span class="chip" [style.background-image]="'url(' + effects[2].img + ')'" (mouseenter)="active.set(effects[2])" (mouseleave)="active.set(null)"></span>
           metálico perolizado.
         </p>
-        <div class="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <p class="mt-8 h-6 font-heading uppercase tracking-widest text-white/80">{{ active()?.name }}</p>
+        <div class="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a routerLink="/linha-premium/canue-fosco-e-aveludado" class="btn btn-orange">Conheça a linha Canue</a>
           <a [href]="wa" target="_blank" rel="noopener noreferrer" class="btn border border-white text-white hover:bg-white hover:text-brand-navy">Pedir orçamento</a>
         </div>
@@ -41,8 +42,8 @@ export class Premium {
   wa = waLink('Olá! Quero saber mais sobre a linha premium Canue.');
   active = signal<Effect | null>(null);
   effects: Effect[] = [
-    { img: '/images/canue-fosco.jpg', color: '#6f6f6b' },
-    { img: '/images/canue-verde.jpg', color: '#4f5d4a' },
-    { img: '/images/canue-metalico-acai.jpg', color: '#5a2a5e' },
+    { img: '/images/canue-morango-refrescante.jpg', color: '#6b4457', name: 'Canue Morango Refrescante' },
+    { img: '/images/canue-azul-barim.jpg', color: '#1d3a4b', name: 'Canue Azul Barim Fosco Aveludado' },
+    { img: '/images/canue-verde-manguezal.jpg', color: '#4b4c2a', name: 'Canue Verde Manguezal' },
   ];
 }

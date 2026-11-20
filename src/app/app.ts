@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs';
 import { TopBar } from './layout/top-bar';
 import { Header } from './layout/header';
 import { Footer } from './layout/footer';
@@ -16,4 +18,12 @@ import { FloatingButtons } from './layout/floating-buttons';
     <app-floating-buttons />
   `,
 })
-export class App {}
+export class App {
+  constructor() {
+    // Ao trocar de página, volta para o topo
+    const scroller = inject(ViewportScroller);
+    inject(Router).events
+      .pipe(filter((e) => e instanceof NavigationEnd))
+      .subscribe(() => scroller.scrollToPosition([0, 0]));
+  }
+}
