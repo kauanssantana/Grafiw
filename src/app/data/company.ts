@@ -27,11 +27,19 @@ const slug = (s: string) =>
   s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 const sub = (base: string, labels: string[]) => labels.map((label) => ({ label, link: `${base}/${slug(label)}` }));
 
-export interface NavItem { label: string; link?: string; children?: { label: string; link: string }[] }
+export interface NavLink { label: string; link: string; query?: Record<string, string> }
+export interface NavItem { label: string; link?: string; query?: Record<string, string>; children?: NavLink[] }
 
 export const NAV: NavItem[] = [
-  { label: 'Produtos', children: sub('/produtos', ['Grafiato', 'Textura', 'Textura Designer', 'Textura Projetada', 'Cristaline Arenato', 'Tinta Látex Acrílico Grafiw', 'Massa Corrida']) },
-  { label: 'Linha Premium', children: sub('/linha-premium', ['Canue Metálico Perolizado', 'Canue Fosco e Aveludado', 'Cimento Queimado Grafiw']) },
+  { label: 'Produtos', link: '/produtos', children: sub('/produtos', ['Grafiato', 'Textura', 'Textura Designer', 'Textura Projetada', 'Cristaline Arenato', 'Tinta Látex Acrílico Grafiw', 'Massa Corrida', 'Cola Bloco']) },
+  {
+    label: 'Linha Premium', link: '/produtos', query: { filtro: 'premium' },
+    children: [
+      { label: 'Canue Metálico Perolizado', link: '/produtos', query: { filtro: 'metalico' } },
+      { label: 'Canue Fosco e Aveludado', link: '/produtos', query: { filtro: 'fosco' } },
+      { label: 'Cimento Queimado Grafiw', link: '/linha-premium/cimento-queimado-grafiw' },
+    ],
+  },
   { label: 'Catálogo de Cores', link: '/catalogo-de-cores' },
   { label: 'Matéria-Prima', link: '/materia-prima' },
   { label: 'Contato', link: '/contato' },

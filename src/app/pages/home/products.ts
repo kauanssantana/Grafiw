@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { waLink } from '../../data/company';
 import { Reveal } from '../../shared/reveal';
 
-interface Product { name: string; desc: string; img: string; link: string; price?: string; priceNote?: string }
+interface Product { name: string; desc: string; img: string; link: string; query?: Record<string, string>; price?: string; priceNote?: string }
 
 @Component({
   selector: 'app-products',
@@ -20,7 +20,7 @@ interface Product { name: string; desc: string; img: string; link: string; price
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           @for (p of products; track p.name; let i = $index) {
             <article [appReveal]="(i % 3) * 0.1" class="group flex flex-col bg-white shadow-sm transition hover:shadow-xl">
-              <a [routerLink]="p.link" class="block aspect-[4/3] overflow-hidden bg-white">
+              <a [routerLink]="p.link" [queryParams]="p.query" class="block aspect-[4/3] overflow-hidden bg-white">
                 <img [src]="p.img" [alt]="p.name" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
               </a>
               <div class="flex flex-1 flex-col p-6">
@@ -30,12 +30,16 @@ interface Product { name: string; desc: string; img: string; link: string; price
                   <p class="mt-4 text-sm text-gray-500">{{ p.priceNote }} <strong class="text-base text-brand-navy">{{ p.price }}</strong></p>
                 }
                 <div class="mt-5 flex items-center justify-between border-t border-gray-100 pt-4">
-                  <a [routerLink]="p.link" class="text-xs font-bold uppercase tracking-widest text-brand-blue hover:text-brand-orange">Ver produto →</a>
+                  <a [routerLink]="p.link" [queryParams]="p.query" class="text-xs font-bold uppercase tracking-widest text-brand-blue hover:text-brand-orange">Ver produto →</a>
                   <a [href]="wa(p.name)" target="_blank" rel="noopener noreferrer" class="text-xs font-bold uppercase tracking-widest text-brand-orange hover:text-brand-navy">Orçamento</a>
                 </div>
               </div>
             </article>
           }
+        </div>
+
+        <div class="mt-10 text-center">
+          <a routerLink="/produtos" class="btn btn-navy">Ver todos os produtos</a>
         </div>
 
         <div appReveal class="mt-16 grid items-center gap-8 bg-brand-navy p-8 text-white md:grid-cols-2 md:p-12">
@@ -65,8 +69,8 @@ export class Products {
 
   products: Product[] = [
     { name: 'Cristaline Arenato', desc: 'Textura para decoração e proteção, em embalagens de 25 kg e 50 kg.', img: '/images/cristaline.jpg', link: '/produtos/cristaline-arenato', price: 'R$ 116,00', priceNote: 'Ref.' },
-    { name: 'Canue Fosco e Aveludado', desc: 'Efeito cimento queimado, em acabamento fosco e aveludado. Linha premium.', img: '/images/canue-fosco.jpg', link: '/linha-premium/canue-fosco-e-aveludado', price: 'R$ 120,00', priceNote: 'Ref. 5 kg' },
-    { name: 'Canue Metálico Açaí', desc: 'Metálico perolizado para paredes com muito brilho e personalidade.', img: '/images/canue-metalico-acai.jpg', link: '/linha-premium/canue-metalico-perolizado' },
+    { name: 'Canue Fosco e Aveludado', desc: 'Efeito cimento queimado, em acabamento fosco e aveludado. Linha premium.', img: '/images/canue-fosco.jpg', link: '/produtos', query: { filtro: 'fosco' }, price: 'R$ 120,00', priceNote: 'Ref. 5 kg' },
+    { name: 'Canue Metálico Açaí', desc: 'Metálico perolizado para paredes com muito brilho e personalidade.', img: '/images/canue-metalico-acai.jpg', link: '/produtos', query: { filtro: 'metalico' } },
     { name: 'Látex Acrílico Salmon', desc: 'Tinta látex acrílico Grafiw para ambientes internos e externos.', img: '/images/latex-salmon.jpg', link: '/produtos/tinta-latex-acrilico-grafiw', price: 'R$ 198,00', priceNote: 'Ref. 18 L' },
     { name: 'Grafiato', desc: 'Fabricação própria, com ranhuras marcantes. Aplicado com desempenadeira.', img: '/images/grafiato.jpg', link: '/produtos/grafiato' },
     { name: 'Complementos', desc: 'Massa corrida, seladores, cola bloco e tudo para o acabamento da sua pintura.', img: '/images/colabloco.jpg', link: '/produtos/massa-corrida' },

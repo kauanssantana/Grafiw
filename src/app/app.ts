@@ -2,16 +2,14 @@ import { Component, inject } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
-import { TopBar } from './layout/top-bar';
 import { Header } from './layout/header';
 import { Footer } from './layout/footer';
 import { FloatingButtons } from './layout/floating-buttons';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TopBar, Header, Footer, FloatingButtons],
+  imports: [RouterOutlet, Header, Footer, FloatingButtons],
   template: `
-    <app-top-bar />
     <app-header />
     <main><router-outlet /></main>
     <app-footer />
@@ -20,10 +18,14 @@ import { FloatingButtons } from './layout/floating-buttons';
 })
 export class App {
   constructor() {
-    // Ao trocar de página, volta para o topo
+    // Ao trocar de página, volta para o topo (trocar só o filtro da lista não rola)
     const scroller = inject(ViewportScroller);
+    let ultima = '';
     inject(Router).events
-      .pipe(filter((e) => e instanceof NavigationEnd))
-      .subscribe(() => scroller.scrollToPosition([0, 0]));
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe((e) => {
+        const caminho = e.urlAfterRedirects.split(/[?#]/)[0];
+        if (caminho !== ultima) { scroller.scrollToPosition([0, 0]); ultima = caminho; }
+      });
   }
 }

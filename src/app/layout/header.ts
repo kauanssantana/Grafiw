@@ -15,15 +15,13 @@ import { NAV, waLink } from '../data/company';
       <nav class="hidden items-center gap-7 lg:flex" aria-label="Principal">
         @for (item of nav; track item.label) {
           <div class="group relative">
+            <a [routerLink]="item.link" [queryParams]="item.query" class="nav-link">{{ item.label }}@if (item.children) { <span aria-hidden="true"> ▾</span> }</a>
             @if (item.children) {
-              <button type="button" class="nav-link">{{ item.label }} <span aria-hidden="true">▾</span></button>
               <ul class="invisible absolute left-0 top-full min-w-64 border-t-2 border-brand-orange bg-white py-2 opacity-0 shadow-xl transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-                @for (child of item.children; track child.link) {
-                  <li><a [routerLink]="child.link" class="block px-5 py-2.5 text-sm hover:bg-grey-light hover:text-brand-blue">{{ child.label }}</a></li>
+                @for (child of item.children; track child.label) {
+                  <li><a [routerLink]="child.link" [queryParams]="child.query" class="block px-5 py-2.5 text-sm hover:bg-grey-light hover:text-brand-blue">{{ child.label }}</a></li>
                 }
               </ul>
-            } @else {
-              <a [routerLink]="item.link" class="nav-link">{{ item.label }}</a>
             }
           </div>
         }
@@ -43,9 +41,9 @@ import { NAV, waLink } from '../data/company';
       <nav class="max-h-[80vh] overflow-y-auto border-t border-gray-100 bg-white px-6 py-4 lg:hidden" aria-label="Mobile">
         @for (item of nav; track item.label) {
           @if (item.children) {
-            <p class="mt-3 font-heading text-sm uppercase tracking-widest text-brand-blue">{{ item.label }}</p>
-            @for (child of item.children; track child.link) {
-              <a [routerLink]="child.link" (click)="open.set(false)" class="block py-2 pl-3 text-sm text-gray-700">{{ child.label }}</a>
+            <a [routerLink]="item.link" [queryParams]="item.query" (click)="open.set(false)" class="mt-3 block font-heading text-sm uppercase tracking-widest text-brand-blue">{{ item.label }}</a>
+            @for (child of item.children; track child.label) {
+              <a [routerLink]="child.link" [queryParams]="child.query" (click)="open.set(false)" class="block py-2 pl-3 text-sm text-gray-700">{{ child.label }}</a>
             }
           } @else {
             <a [routerLink]="item.link" (click)="open.set(false)" class="mt-3 block font-heading text-sm uppercase tracking-widest">{{ item.label }}</a>

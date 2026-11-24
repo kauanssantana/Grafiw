@@ -27,7 +27,7 @@ interface Effect { img: string; color: string; name: string }
         </p>
         <p class="mt-8 h-6 font-heading uppercase tracking-widest text-white/80">{{ active()?.name }}</p>
         <div class="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <a routerLink="/linha-premium/canue-fosco-e-aveludado" class="btn btn-orange">Conheça a linha Canue</a>
+          <a routerLink="/produtos" [queryParams]="{ filtro: 'premium' }" class="btn btn-orange">Conheça a linha Canue</a>
           <a [href]="wa" target="_blank" rel="noopener noreferrer" class="btn border border-white text-white hover:bg-white hover:text-brand-navy">Pedir orçamento</a>
         </div>
       </div>
