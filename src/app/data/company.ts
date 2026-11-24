@@ -35,9 +35,8 @@ export const NAV: NavItem[] = [
   {
     label: 'Linha Premium', link: '/produtos', query: { filtro: 'premium' },
     children: [
-      { label: 'Canue Metálico Perolizado', link: '/produtos', query: { filtro: 'metalico' } },
-      { label: 'Canue Fosco e Aveludado', link: '/produtos', query: { filtro: 'fosco' } },
-      { label: 'Cimento Queimado Grafiw', link: '/linha-premium/cimento-queimado-grafiw' },
+      { label: 'Canue Aveludado Fosco', link: '/linha-premium/canue-aveludado-fosco' },
+      { label: 'Canue Metálico', link: '/linha-premium/canue-metalico' },
     ],
   },
   { label: 'Catálogo de Cores', link: '/catalogo-de-cores' },

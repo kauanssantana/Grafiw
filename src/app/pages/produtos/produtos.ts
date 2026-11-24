@@ -19,6 +19,7 @@ const BASICOS: Item[] = PRODUTOS
 
 const PREMIUM: Item[] = CANUE.map((c) => ({
   nome: c.nome, categoria: 'premium', linha: c.linha, img: c.img, preco: c.preco,
+  link: c.linha === 'fosco' ? '/linha-premium/canue-aveludado-fosco' : '/linha-premium/canue-metalico',
   tag: `Linha premium · ${LINHAS[c.linha].rotulo}`,
   desc: `${LINHAS[c.linha].efeito}. ${c.linha === 'fosco' ? 'Embalagem' : 'Embalagens'}: ${LINHAS[c.linha].embalagem.replace('Baldes de ', 'baldes de ')}.`,
 }));
@@ -81,7 +82,7 @@ const FILTROS = ['todos', 'texturas', 'tintas', 'premium', 'fosco', 'metalico'];
               @if (i.preco) { <p class="mt-3 text-sm text-gray-500">Ref. <strong class="text-brand-navy">{{ i.preco }}</strong></p> }
               <div class="mt-4 flex items-center justify-between border-t border-gray-100 pt-4">
                 @if (i.link) {
-                  <a [routerLink]="i.link" class="text-xs font-bold uppercase tracking-widest text-brand-blue hover:text-brand-orange">Ver produto →</a>
+                  <a [routerLink]="i.link" class="text-xs font-bold uppercase tracking-widest text-brand-blue hover:text-brand-orange">{{ i.categoria === 'premium' ? 'Ver linha →' : 'Ver produto →' }}</a>
                 }
                 <a [href]="wa(i.nome)" target="_blank" rel="noopener noreferrer" class="text-xs font-bold uppercase tracking-widest text-brand-orange hover:text-brand-navy">Orçamento</a>
               </div>

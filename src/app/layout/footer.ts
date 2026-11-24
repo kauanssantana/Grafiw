@@ -27,7 +27,8 @@ import { COMPANY, NAV, waLink } from '../data/company';
             @for (item of produtos; track item.link) {
               <li><a [routerLink]="item.link" class="hover:text-brand-blue">{{ item.label }}</a></li>
             }
-            <li><a routerLink="/produtos" [queryParams]="{ filtro: 'premium' }" class="hover:text-brand-blue">Linha Premium Canue</a></li>
+            <li><a routerLink="/linha-premium/canue-aveludado-fosco" class="hover:text-brand-blue">Canue Aveludado Fosco</a></li>
+            <li><a routerLink="/linha-premium/canue-metalico" class="hover:text-brand-blue">Canue Metálico</a></li>
             <li class="pt-1"><a routerLink="/produtos" class="font-bold text-brand-blue hover:text-brand-orange">Ver todos os produtos →</a></li>
           </ul>
         </div>

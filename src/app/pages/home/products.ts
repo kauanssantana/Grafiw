@@ -69,8 +69,8 @@ export class Products {
 
   products: Product[] = [
     { name: 'Cristaline Arenato', desc: 'Textura para decoração e proteção, em embalagens de 25 kg e 50 kg.', img: '/images/cristaline.jpg', link: '/produtos/cristaline-arenato', price: 'R$ 116,00', priceNote: 'Ref.' },
-    { name: 'Canue Fosco e Aveludado', desc: 'Efeito cimento queimado, em acabamento fosco e aveludado. Linha premium.', img: '/images/canue-fosco.jpg', link: '/produtos', query: { filtro: 'fosco' }, price: 'R$ 120,00', priceNote: 'Ref. 5 kg' },
-    { name: 'Canue Metálico Açaí', desc: 'Metálico perolizado para paredes com muito brilho e personalidade.', img: '/images/canue-metalico-acai.jpg', link: '/produtos', query: { filtro: 'metalico' } },
+    { name: 'Canue Fosco e Aveludado', desc: 'Efeito cimento queimado, em acabamento fosco e aveludado. Linha premium.', img: '/images/canue-fosco.jpg', link: '/linha-premium/canue-aveludado-fosco', price: 'R$ 120,00', priceNote: 'Ref. 5 kg' },
+    { name: 'Canue Metálico Açaí', desc: 'Metálico perolizado para paredes com muito brilho e personalidade.', img: '/images/canue-metalico-acai.jpg', link: '/linha-premium/canue-metalico' },
     { name: 'Látex Acrílico Salmon', desc: 'Tinta látex acrílico Grafiw para ambientes internos e externos.', img: '/images/latex-salmon.jpg', link: '/produtos/tinta-latex-acrilico-grafiw', price: 'R$ 198,00', priceNote: 'Ref. 18 L' },
     { name: 'Grafiato', desc: 'Fabricação própria, com ranhuras marcantes. Aplicado com desempenadeira.', img: '/images/grafiato.jpg', link: '/produtos/grafiato' },
     { name: 'Complementos', desc: 'Massa corrida, seladores, cola bloco e tudo para o acabamento da sua pintura.', img: '/images/colabloco.jpg', link: '/produtos/massa-corrida' },
