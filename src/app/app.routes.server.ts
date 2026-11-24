@@ -14,5 +14,10 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender,
     getPrerenderParams: async () => LINHAS_PREMIUM.map((l) => ({ slug: l.slug })),
   },
+  {
+    path: 'linha-premium/:slug/:cor',
+    renderMode: RenderMode.Prerender,
+    getPrerenderParams: async () => LINHAS_PREMIUM.flatMap((l) => l.cores.map((c) => ({ slug: l.slug, cor: c.slug }))),
+  },
   { path: '**', renderMode: RenderMode.Prerender },
 ];

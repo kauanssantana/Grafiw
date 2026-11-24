@@ -26,11 +26,11 @@ import { LINHAS_PREMIUM, linhaPorSlug } from '../../data/linha-premium';
       <section class="mx-auto max-w-7xl px-6 py-14 md:py-20">
         <div class="flex flex-wrap items-end justify-between gap-4">
           <h2 class="section-title">Cores <span class="text-brand-blue">disponíveis</span></h2>
-          <p class="text-sm text-gray-500">{{ l.cores.length }} cores · toque na cor para pedir orçamento</p>
+          <p class="text-sm text-gray-500">{{ l.cores.length }} cores · toque na cor para ver os detalhes</p>
         </div>
         <div class="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
           @for (c of l.cores; track c.nome) {
-            <a [href]="wa(l.nome, c.nome)" target="_blank" rel="noopener noreferrer"
+            <a [routerLink]="'/linha-premium/' + l.slug + '/' + c.slug"
               class="group block bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
               <img [src]="c.img" [alt]="l.nome + ' cor ' + c.nome" class="aspect-square w-full object-cover" loading="lazy" />
               <p class="px-3 py-3 text-center font-heading text-sm uppercase tracking-wider text-brand-navy group-hover:text-brand-orange">Cor {{ c.nome }}</p>
@@ -96,8 +96,8 @@ import { LINHAS_PREMIUM, linhaPorSlug } from '../../data/linha-premium';
               <a [href]="wa(l.nome)" target="_blank" rel="noopener noreferrer" class="btn btn-orange mt-6 w-full">Orçamento no WhatsApp</a>
               <a [href]="c.phoneHref" class="mt-4 block text-center text-sm text-white/80 hover:text-white">ou ligue {{ c.phone }}</a>
             </div>
-            @if (l.preco) {
-              <p class="mt-4 text-xs leading-relaxed text-gray-500">Preço de referência: <strong class="text-brand-navy">{{ l.preco }}</strong>. Valores sujeitos a alteração: confirme no WhatsApp.</p>
+            @if (preco(); as p) {
+              <p class="mt-4 text-xs leading-relaxed text-gray-500">Preço de referência: <strong class="text-brand-navy">{{ p }}</strong>. Valores sujeitos a alteração: confirme no WhatsApp.</p>
             }
           </aside>
         </div>
@@ -140,6 +140,7 @@ export class LinhaPremiumPage {
   private slug = toSignal(inject(ActivatedRoute).paramMap.pipe(map((m) => m.get('slug'))));
   linha = computed(() => linhaPorSlug(this.slug()));
   outra = computed(() => linhaPorSlug(this.linha()?.outra));
+  preco = computed(() => { const c = this.linha()?.cores.find((x) => x.preco); return c ? `Canue ${c.nome}: ${c.preco}` : null; });
 
   constructor() {
     effect(() => {

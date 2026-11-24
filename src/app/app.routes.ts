@@ -4,6 +4,7 @@ import { Catalogo } from './pages/catalogo/catalogo';
 import { ProdutoPage } from './pages/produto/produto';
 import { ProdutosPage } from './pages/produtos/produtos';
 import { LinhaPremiumPage } from './pages/linha-premium/linha-premium';
+import { CorPremiumPage } from './pages/linha-premium/cor-premium';
 import { EmBreve } from './pages/em-breve';
 
 export const routes: Routes = [
@@ -11,6 +12,7 @@ export const routes: Routes = [
   { path: 'produtos', component: ProdutosPage, title: 'Produtos | Grafiw Tintas e Texturas' },
   { path: 'produtos/:slug', component: ProdutoPage },
   { path: 'linha-premium/:slug', component: LinhaPremiumPage },
+  { path: 'linha-premium/:slug/:cor', component: CorPremiumPage },
   { path: 'catalogo-de-cores', component: Catalogo, title: 'Catálogo de cores | Grafiw Tintas e Texturas' },
   // Páginas ainda não criadas (produtos, catálogo, blog...) caem aqui. Vamos substituí-las uma a uma.
   { path: '**', component: EmBreve, title: 'Em breve | Grafiw' },

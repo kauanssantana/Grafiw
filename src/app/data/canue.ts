@@ -2,6 +2,7 @@ export type LinhaCanue = 'fosco' | 'metalico';
 
 export interface Canue {
   nome: string;
+  slug: string;
   linha: LinhaCanue;
   img: string;
   /** Preço de referência (vem do briefing). Pode mudar: confirmar no WhatsApp. */
@@ -15,6 +16,7 @@ export const LINHAS: Record<LinhaCanue, { rotulo: string; embalagem: string; efe
 
 const c = (linha: LinhaCanue, cor: string, arquivo: string, preco?: string): Canue => ({
   nome: linha === 'fosco' ? `Canue ${cor}` : `Canue Metálico ${cor}`,
+  slug: arquivo,
   linha,
   img: `/images/canue/${linha}-${arquivo}.jpg`,
   preco,
