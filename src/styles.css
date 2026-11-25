@@ -21,6 +21,9 @@ app-root { display: block; }
   .btn-orange { @apply bg-brand-orange text-white hover:bg-brand-navy; }
   .btn-outline { @apply border border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white; }
   .nav-link { @apply block py-7 font-heading text-[13px] uppercase tracking-widest text-ink transition-colors hover:text-brand-blue; }
+  .campo { @apply w-full border border-gray-300 bg-white px-4 py-3 text-sm outline-none transition-colors placeholder:text-gray-400 focus:border-brand-blue aria-[invalid=true]:border-red-500; }
+  .campo-label { @apply mb-1 block text-xs font-bold uppercase tracking-widest text-brand-navy; }
+  .campo-erro { @apply mt-1 text-xs text-red-600; }
   .eyebrow { @apply font-heading text-xs uppercase tracking-[0.3em] text-brand-orange; }
   .section-title { @apply font-heading text-4xl uppercase leading-tight text-brand-navy md:text-5xl; }
   .section-pad { @apply mx-auto max-w-7xl px-6 py-20 md:py-28; }

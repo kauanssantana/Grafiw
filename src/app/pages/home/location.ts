@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { COMPANY } from '../../data/company';
+import { COMPANY, HORARIOS } from '../../data/company';
 import { Reveal } from '../../shared/reveal';
 
 @Component({
@@ -21,8 +21,9 @@ import { Reveal } from '../../shared/reveal';
 
           <h3 class="mt-10 font-heading uppercase tracking-widest text-brand-navy">Horário de funcionamento</h3>
           <ul class="mt-2 max-w-sm divide-y divide-gray-200 text-gray-700">
-            <li class="flex justify-between py-2"><span>Segunda a sexta</span><span>até 18h</span></li>
-            <li class="flex justify-between py-2"><span>Sábado</span><span>a partir das 8h</span></li>
+            @for (h of horarios; track h.dia) {
+              <li class="flex justify-between py-2"><span>{{ h.dia }}</span><span>{{ h.horas }}</span></li>
+            }
           </ul>
           <p class="mt-6 text-sm text-gray-600">Tel. {{ c.phone }} · WhatsApp {{ c.whatsappLabel }}</p>
         </div>
@@ -36,6 +37,7 @@ import { Reveal } from '../../shared/reveal';
 })
 export class LocationSection {
   c = COMPANY;
+  horarios = HORARIOS;
   route = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(COMPANY.mapQuery)}`;
   map = inject(DomSanitizer).bypassSecurityTrustResourceUrl(
     `https://www.google.com/maps?q=${encodeURIComponent(COMPANY.mapQuery)}&output=embed`,

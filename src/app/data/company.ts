@@ -10,6 +10,9 @@ export const COMPANY = {
   // ⚠️ CONFIRMAR: o site atual mostra "1502 - Parque do Carmo", o briefing diz 1512 / Itaquera.
   addressLines: ['Av. Afonso de Sampaio e Sousa, 1512', 'Itaquera, São Paulo - SP', 'CEP 08275-025'],
   mapQuery: 'Av. Afonso de Sampaio e Sousa, 1512, Itaquera, São Paulo - SP, 08275-025',
+  // Opcional: preencha para aparecer nas páginas de Política de Privacidade e Termos.
+  razaoSocial: '',
+  cnpj: '',
   rating: '4,5',
   reviews: 296,
   // TikTok ainda sem link: quando tiver, adicione aqui { name: 'TikTok', url: '...' }
@@ -19,6 +22,21 @@ export const COMPANY = {
     { name: 'YouTube', url: 'https://www.youtube.com/channel/UCt3Vez_0q3YXNCaIkQhPYew' },
   ],
 };
+
+export const HORARIOS = [
+  { dia: 'Segunda a sexta', horas: '8h às 18h' },
+  { dia: 'Sábado', horas: '8h às 12h' },
+  { dia: 'Domingo e feriados', horas: 'Fechado' },
+];
+
+/**
+ * Envio do formulário de contato.
+ * - endpoint vazio: abre o WhatsApp com a mensagem pronta (funciona sem configurar nada).
+ * - endpoint preenchido: envia os dados por e-mail via serviço de formulários
+ *   (ex.: Formspree 'https://formspree.io/f/xxxx' ou Web3Forms 'https://api.web3forms.com/submit',
+ *   que também pede extras: { access_key: '...' }).
+ */
+export const FORM_ENVIO = { endpoint: '', extras: {} as Record<string, string> };
 
 export const waLink = (msg = 'Olá! Vim pelo site da Grafiw e gostaria de um orçamento.') =>
   `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(msg)}`;
