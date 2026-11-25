@@ -24,11 +24,35 @@ import { POSTS, postPorSlug } from '../../data/blog';
 
       <article class="mx-auto max-w-4xl px-6 py-14 md:py-20">
         <img [src]="p.img" [alt]="p.titulo" class="mb-10 max-h-96 w-full object-cover" />
-        @for (t of p.corpo; track $index) {
-          <p class="text-lg leading-relaxed text-gray-700" [class.mt-5]="!$first">{{ t }}</p>
-        }
-        @if (!p.completo) {
-          <p class="mt-8 border-l-4 border-brand-orange bg-grey-light p-5 text-sm leading-relaxed text-gray-600">Quer saber mais sobre este assunto? Fale com o nosso atendimento consultivo e tire suas dúvidas.</p>
+        @for (b of p.blocos; track $index) {
+          @switch (b.t) {
+            @case ('p') { <p class="mt-5 text-lg leading-relaxed text-gray-700">{{ b.texto }}</p> }
+            @case ('h2') {
+              <h2 class="mt-12 font-heading text-3xl uppercase text-brand-navy">{{ b.texto }}</h2>
+              <div class="mt-2 h-0.5 w-12 bg-brand-orange"></div>
+            }
+            @case ('h3') { <h3 class="mt-9 font-heading text-xl uppercase text-brand-blue">{{ b.texto }}</h3> }
+            @case ('ul') {
+              <ul class="mt-4 space-y-2">
+                @for (i of b.itens ?? []; track $index) {
+                  <li class="flex gap-3 text-lg leading-relaxed text-gray-700"><span class="text-brand-orange" aria-hidden="true">✓</span><span>{{ i }}</span></li>
+                }
+              </ul>
+            }
+            @case ('ol') {
+              <ol class="mt-6 space-y-5">
+                @for (i of b.itens ?? []; track $index) {
+                  <li class="flex gap-4">
+                    <span class="flex h-9 w-9 shrink-0 items-center justify-center bg-brand-navy font-heading text-lg text-white">{{ $index + 1 }}</span>
+                    <span class="pt-1 text-lg leading-relaxed text-gray-700">{{ i }}</span>
+                  </li>
+                }
+              </ol>
+            }
+            @case ('img') {
+              <img [src]="b.src" [alt]="b.alt ?? ''" [style.max-width.px]="b.larg" class="mx-auto my-8 h-auto w-full" loading="lazy" />
+            }
+          }
         }
         <div class="mt-10 flex flex-wrap gap-4">
           <a [href]="wa(p.titulo)" target="_blank" rel="noopener noreferrer" class="btn btn-orange">Falar no WhatsApp</a>
