@@ -31,5 +31,5 @@ import { Reveal } from '../../shared/reveal';
   `,
 })
 export class BlogPreview {
-  posts = POSTS;
+  posts = POSTS.slice(0, 3);
 }

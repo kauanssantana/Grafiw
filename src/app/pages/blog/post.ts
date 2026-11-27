@@ -54,6 +54,16 @@ import { POSTS, postPorSlug } from '../../data/blog';
             }
           }
         }
+        @if (p.relacionados?.length) {
+          <div class="mt-12 border-t border-gray-200 pt-8">
+            <p class="eyebrow">Produtos citados neste post</p>
+            <div class="mt-4 flex flex-wrap gap-3">
+              @for (r of p.relacionados; track r.texto) {
+                <a [routerLink]="r.link" [queryParams]="r.query" class="btn btn-outline py-3">{{ r.texto }}</a>
+              }
+            </div>
+          </div>
+        }
         <div class="mt-10 flex flex-wrap gap-4">
           <a [href]="wa(p.titulo)" target="_blank" rel="noopener noreferrer" class="btn btn-orange">Falar no WhatsApp</a>
           <a routerLink="/blog" class="btn btn-outline">Voltar ao blog</a>
